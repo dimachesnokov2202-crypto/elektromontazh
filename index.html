@@ -1,0 +1,1222 @@
+```html
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электромонтаж в Оренбурге и п. Покровке — Чесноков Д.С. и Чесноков С.В.</title>
+    <meta name="description" content="Профессиональные электромонтажные работы в г. Оренбурге и п. Покровке без посредников. Частные мастера Чесноков Дмитрий Сергеевич и Чесноков Сергей Викторович. Гарантия 5 лет, ГОСТ, ПУЭ.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter & Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Библиотека генерации QR-кода для быстрого сбора отзывов на объекте -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#152033',
+                            900: '#0F172A',
+                            950: '#090D16',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Индустриальные стили и плавные переходы */
+        .tab-active {
+            background-color: #0F172A;
+            color: #FBBF24;
+            border-color: #0F172A;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+        }
+        .faq-content {
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .faq-item.open .faq-content {
+            max-height: 360px;
+            opacity: 1;
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+        .engineering-grid {
+            background-image:
+                linear-gradient(to right, rgba(245, 158, 11, 0.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(245, 158, 11, 0.07) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        /* Скрытие стрелок у числовых инпутов */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-amber-400 selection:text-slate-950">
+
+    <!-- ==================== ВЕРХНЯЯ ПАНЕЛЬ АВАРИЙНОГО ВЫЕЗДА ==================== -->
+    <div class="bg-amber-500 text-slate-950 text-xs sm:text-sm font-semibold py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex h-2 w-2 rounded-full bg-slate-950 animate-ping"></span>
+                <span>Аварийный выезд электрика по п. Покровка и пригороду — <strong>от 30 минут</strong> (24/7)</span>
+            </div>
+            <button onclick="openOrderModal('СРОЧНЫЙ АВАРИЙНЫЙ ВЫЕЗД (24/7)', [], 0, true)" class="underline hover:no-underline font-extrabold tracking-tight">
+                Вызвать срочно &rarr;
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== ШАПКА САЙТА (HEADER) ==================== -->
+    <header class="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-800 text-white shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Логотип -->
+                <a href="#" class="flex items-center gap-3 group shrink-0">
+                    <div class="w-11 h-11 rounded-xl bg-amber-500 flex items-center justify-center text-slate-950 shadow-lg shadow-amber-500/20 group-hover:bg-amber-400 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-heading font-extrabold text-base sm:text-lg tracking-tight block leading-none">ЭЛЕКТРОМОНТАЖ <span class="text-amber-400">56</span></span>
+                        <span class="text-[11px] text-slate-400 tracking-wider uppercase block mt-1">Оренбург • п. Покровка</span>
+                    </div>
+                </a>
+
+                <!-- Навигация (Десктоп) -->
+                <nav class="hidden xl:flex items-center gap-5 text-sm font-medium text-slate-300">
+                    <a href="#masters" class="hover:text-amber-400 transition">Мастера</a>
+                    <a href="#calculator" class="hover:text-amber-400 transition">Калькулятор и прайс</a>
+                    <a href="#private-house" class="hover:text-amber-400 transition">Частный дом</a>
+                    <a href="#portfolio" class="hover:text-amber-400 transition">Портфолио</a>
+                    <a href="#materials" class="hover:text-amber-400 transition">Материалы</a>
+                    <a href="#reviews" class="hover:text-amber-400 transition">Отзывы</a>
+                    <a href="#faq" class="hover:text-amber-400 transition">FAQ</a>
+                </nav>
+
+                <!-- Телефоны и мессенджеры (только Telegram и ВКонтакте) -->
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="text-right">
+                        <div class="flex items-center gap-2.5">
+                            <a href="tel:+79015932642" class="font-heading font-bold text-sm lg:text-base hover:text-amber-400 transition whitespace-nowrap">+7 (901) 593-26-42</a>
+                            <span class="text-slate-600">|</span>
+                            <a href="tel:+79017100137" class="font-heading font-bold text-sm lg:text-base hover:text-amber-400 transition whitespace-nowrap">+7 (901) 710-01-37</a>
+                        </div>
+                        <div class="flex items-center justify-end gap-3 mt-1 text-[11px]">
+                            <span class="text-emerald-400 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                Напрямую без посредников
+                            </span>
+                            <a data-tg-link href="https://t.me/+79015932642" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline font-semibold">Telegram</a>
+                            <a data-vk-link href="https://vk.com/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline font-semibold">ВКонтакте</a>
+                        </div>
+                    </div>
+                    <button onclick="openOrderModal('Вызов мастеров на замер')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl transition shadow-md shadow-amber-500/20 active:scale-95 text-sm shrink-0">
+                        Вызвать мастера
+                    </button>
+                </div>
+
+                <!-- Мобильная кнопка бургер-меню -->
+                <button id="mobile-menu-btn" class="xl:hidden p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800 transition" aria-label="Открыть меню">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Выпадающее мобильное меню -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-slate-900 border-t border-slate-800 px-4 pt-3 pb-6 space-y-2.5 shadow-2xl">
+            <a href="#masters" class="mobile-link block py-2 text-slate-200 hover:text-amber-400 font-medium">О мастерах и допусках</a>
+            <a href="#calculator" class="mobile-link block py-2 text-slate-200 hover:text-amber-400 font-medium">Калькулятор «Под ключ» и прайс</a>
+            <a href="#private-house" class="mobile-link block py-2 text-slate-200 hover:text-amber-400 font-medium">Электрика в частном доме</a>
+            <a href="#portfolio" class="mobile-link block py-2 text-slate-200 hover:text-amber-400 font-medium">Портфолио «До / После»</a>
+            <a href="#materials" class="mobile-link block py-2 text-slate-200 hover:text-amber-400 font-medium">Стандарты материалов и закупка</a>
+            <a href="#reviews" class="mobile-link block py-2 text-slate-200 hover:text-amber-400 font-medium">Отзывы клиентов</a>
+            <a href="#faq" class="mobile-link block py-2 text-slate-200 hover:text-amber-400 font-medium">Частые вопросы (FAQ)</a>
+            <a href="#contacts" class="mobile-link block py-2 text-slate-200 hover:text-amber-400 font-medium">Контакты</a>
+
+            <div class="pt-3 border-t border-slate-800 space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <a href="tel:+79015932642" class="flex items-center justify-between bg-slate-850 px-3.5 py-2.5 rounded-xl border border-slate-700">
+                        <span class="text-xs text-slate-400">Дмитрий Сергеевич</span>
+                        <span class="font-heading font-bold text-sm text-amber-400">+7 (901) 593-26-42</span>
+                    </a>
+                    <a href="tel:+79017100137" class="flex items-center justify-between bg-slate-850 px-3.5 py-2.5 rounded-xl border border-slate-700">
+                        <span class="text-xs text-slate-400">Сергей Викторович</span>
+                        <span class="font-heading font-bold text-sm text-amber-400">+7 (901) 710-01-37</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <a data-tg-link href="https://t.me/+79015932642" target="_blank" rel="noopener noreferrer" class="bg-[#229ED9] text-white font-semibold py-2.5 rounded-xl text-center text-sm">Telegram</a>
+                    <a data-vk-link href="https://vk.com/" target="_blank" rel="noopener noreferrer" class="bg-[#0077FF] text-white font-semibold py-2.5 rounded-xl text-center text-sm">ВКонтакте</a>
+                </div>
+                <button onclick="openOrderModal('Вызов мастеров (мобильное меню)')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl text-center text-sm">
+                    Оставить заявку на выезд
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== ПЕРВЫЙ ЭКРАН (HERO) ==================== -->
+    <section class="relative bg-slate-950 text-white overflow-hidden engineering-grid">
+        <div class="absolute -top-32 -right-32 w-[460px] h-[460px] bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+                <!-- Левая колонка: УТП, мастера и аварийный блок -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-700 text-amber-400 text-xs sm:text-sm font-semibold">
+                        <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                        г. Оренбург, п. Покровка и пригород • Выезд на замер 0 ₽
+                    </div>
+
+                    <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-[46px] leading-[1.15] tracking-tight">
+                        Электромонтаж в Оренбурге и п. Покровке <span class="text-amber-400">напрямую от мастеров</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Без диспетчеров, посредников и наценок фирм. Работаем вдвоем — <strong class="text-white">Чесноков Дмитрий Сергеевич</strong> и <strong class="text-white">Чесноков Сергей Викторович</strong>. Выполняем монтаж строго по ПУЭ и ГОСТ с официальной гарантией <strong class="text-amber-400">5 лет</strong>.
+                    </p>
+
+                    <!-- Прямые карточки двух мастеров на первом экране -->
+                    <div class="grid sm:grid-cols-2 gap-3.5">
+                        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 flex items-center gap-3.5">
+                            <div class="w-11 h-11 rounded-xl bg-amber-500 text-slate-950 font-heading font-extrabold text-base flex items-center justify-center shrink-0">ДС</div>
+                            <div>
+                                <div class="font-heading font-bold text-sm text-white">Чесноков Дмитрий Сергеевич</div>
+                                <a href="tel:+79015932642" class="font-heading font-extrabold text-base text-amber-400 hover:underline block mt-0.5">+7 (901) 593-26-42</a>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 flex items-center gap-3.5">
+                            <div class="w-11 h-11 rounded-xl bg-amber-500 text-slate-950 font-heading font-extrabold text-base flex items-center justify-center shrink-0">СВ</div>
+                            <div>
+                                <div class="font-heading font-bold text-sm text-white">Чесноков Сергей Викторович</div>
+                                <a href="tel:+79017100137" class="font-heading font-extrabold text-base text-amber-400 hover:underline block mt-0.5">+7 (901) 710-01-37</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Кнопки действий -->
+                    <div class="flex flex-col sm:flex-row gap-3.5 pt-1">
+                        <a href="#calculator" class="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-6 py-4 rounded-xl transition shadow-lg shadow-amber-500/20 text-sm sm:text-base">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                            Рассчитать стоимость работ
+                        </a>
+                        <button onclick="openOrderModal('СРОЧНЫЙ ВЫЗОВ: Аварийный электрик', [], 0, true)" class="inline-flex items-center justify-center gap-2 bg-red-600/20 hover:bg-red-600/30 text-red-300 border border-red-500/40 font-bold px-6 py-4 rounded-xl transition text-sm sm:text-base">
+                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            Аварийный выезд от 30 мин
+                        </button>
+                    </div>
+
+                    <!-- Инженерные гарантии -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-800/80 text-xs">
+                        <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                            <span class="text-amber-400 font-heading font-extrabold text-base block">III–IV гр.</span>
+                            <span class="text-slate-400">Допуск до 1000 В</span>
+                        </div>
+                        <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                            <span class="text-amber-400 font-heading font-extrabold text-base block">5 лет</span>
+                            <span class="text-slate-400">Гарантия на монтаж</span>
+                        </div>
+                        <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                            <span class="text-amber-400 font-heading font-extrabold text-base block">Без пыли</span>
+                            <span class="text-slate-400">Штроборез + пылесос</span>
+                        </div>
+                        <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                            <span class="text-amber-400 font-heading font-extrabold text-base block">ГОСТ / ПУЭ</span>
+                            <span class="text-slate-400">Опрессовка и сварка</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая колонка: Карточка быстрой заявки с выбором района и загрузкой фото -->
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-900 border border-slate-700/90 rounded-2xl p-6 sm:p-7 shadow-2xl relative">
+                        <div class="absolute -top-3.5 right-6 bg-amber-500 text-slate-950 text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                            Расчет по фото или плану
+                        </div>
+                        <h2 class="font-heading font-bold text-xl sm:text-2xl text-white mb-1.5">Быстрая заявка на выезд</h2>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-5">Прикрепите фото щитка или план квартиры — назовем точную цену еще до приезда.</p>
+
+                        <form id="hero-form" class="space-y-3.5">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1">Ваше имя *</label>
+                                <input type="text" name="name" required placeholder="Например, Александр" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition text-sm">
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1">Телефон *</label>
+                                    <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1">Район выезда</label>
+                                    <select name="district" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:border-amber-500 transition text-sm">
+                                        <option value="г. Оренбург">г. Оренбург</option>
+                                        <option value="п. Покровка">п. Покровка</option>
+                                        <option value="Пригород Оренбурга">Пригород</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1">Задача (кратко)</label>
+                                <input type="text" name="task" placeholder="Разводка квартиры, сборка щита, замена автомата..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1">Фото щитка или чертежа (необязательно)</label>
+                                <label class="flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-xl bg-slate-950 border border-dashed border-slate-700 hover:border-amber-500 cursor-pointer transition text-xs text-slate-400">
+                                    <span class="file-label truncate">Выбрать изображение (JPG, PNG)...</span>
+                                    <span class="bg-slate-800 text-amber-400 px-2.5 py-1 rounded-lg font-semibold shrink-0">Прикрепить</span>
+                                    <input type="file" name="photo" accept="image/*" class="hidden photo-input">
+                                </label>
+                            </div>
+                            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-3.5 rounded-xl transition shadow-lg shadow-amber-500/20 text-sm sm:text-base">
+                                Отправить заявку мастерам
+                            </button>
+                            <div class="flex items-center justify-center gap-4 pt-1 text-xs text-slate-400">
+                                <span>Написать напрямую:</span>
+                                <a data-tg-link href="https://t.me/+79015932642" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline font-semibold">Telegram</a>
+                                <a data-vk-link href="https://vk.com/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline font-semibold">ВКонтакте</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== РАЗДЕЛ «О МАСТЕРАХ» И КВАЛИФИКАЦИЯ ==================== -->
+    <section id="masters" class="py-16 sm:py-20 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-amber-600 font-bold text-xs sm:text-sm uppercase tracking-wider">Личная ответственность за каждый объект</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 mt-1.5">Кто выполняет электромонтаж</h2>
+                </div>
+                <p class="text-slate-600 text-sm sm:text-base max-w-xl">
+                    Мы не перепродаем заказы случайным бригадам. Приезжаем вдвоем, сами делаем разметку, штробление, расключение и сдаем объект лично вам.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-10">
+                <!-- Мастер 1: Чесноков Дмитрий Сергеевич -->
+                <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-2xl bg-amber-500 text-slate-950 font-heading font-extrabold text-xl flex items-center justify-center shrink-0">
+                                    ДС
+                                </div>
+                                <div>
+                                    <span class="text-xs text-amber-400 font-bold uppercase tracking-wider">Мастер-электромонтажник</span>
+                                    <h3 class="font-heading font-extrabold text-xl sm:text-2xl text-white">Чесноков Дмитрий Сергеевич</h3>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+                                Допуск III–IV гр. до 1000 В
+                            </span>
+                        </div>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-5">
+                            Специализация: проектирование и балансировка групп нагрузки, сборка силовых и слаботочных распределительных щитов, монтаж реле напряжения, УЗО, дифавтоматов и систем АВР для частных домов.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs text-slate-300 mb-6">
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-850 border border-slate-700">Сборка щитов любой сложности</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-850 border border-slate-700">Диагностика сетей</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-850 border border-slate-700">380 В / 15 кВт</span>
+                        </div>
+                    </div>
+                    <div class="pt-5 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs text-slate-400 block">Прямой телефон мастера:</span>
+                            <a href="tel:+79015932642" class="font-heading font-extrabold text-xl text-amber-400 hover:text-amber-300 transition">+7 (901) 593-26-42</a>
+                        </div>
+                        <button onclick="openOrderModal('Заявка для мастера: Чесноков Дмитрий Сергеевич')" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-white font-semibold text-sm transition">
+                            Позвонить / Заказать
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Мастер 2: Чесноков Сергей Викторович -->
+                <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-2xl bg-amber-500 text-slate-950 font-heading font-extrabold text-xl flex items-center justify-center shrink-0">
+                                    СВ
+                                </div>
+                                <div>
+                                    <span class="text-xs text-amber-400 font-bold uppercase tracking-wider">Мастер-электромонтажник</span>
+                                    <h3 class="font-heading font-extrabold text-xl sm:text-2xl text-white">Чесноков Сергей Викторович</h3>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+                                Допуск III–IV гр. до 1000 В
+                            </span>
+                        </div>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-5">
+                            Специализация: лазерная разметка трасс, штробление бетона и кирпича без пыли, алмазное сверление подрозетников, неразборное соединение проводов в коробках (опрессовка гильзами ГМЛ и сварка), монтаж контуров заземления.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs text-slate-300 mb-6">
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-850 border border-slate-700">Черновой и чистовой монтаж</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-850 border border-slate-700">Заземление и ввод в дом</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-850 border border-slate-700">Освещение и теплые полы</span>
+                        </div>
+                    </div>
+                    <div class="pt-5 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs text-slate-400 block">Прямой телефон мастера:</span>
+                            <a href="tel:+79017100137" class="font-heading font-extrabold text-xl text-amber-400 hover:text-amber-300 transition">+7 (901) 710-01-37</a>
+                        </div>
+                        <button onclick="openOrderModal('Заявка для мастера: Чесноков Сергей Викторович')" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-white font-semibold text-sm transition">
+                            Позвонить / Заказать
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок профессионального оборудования -->
+            <div class="bg-slate-100 rounded-2xl p-6 sm:p-7 border border-slate-200 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="flex items-start gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center shrink-0 font-bold text-sm">01</div>
+                    <div>
+                        <h4 class="font-heading font-bold text-slate-900 text-sm">Штроборез + пылесос</h4>
+                        <p class="text-xs text-slate-600 mt-1">Работаем с промышленным пылеудалением — минимум пыли даже в жилой квартире.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center shrink-0 font-bold text-sm">02</div>
+                    <div>
+                        <h4 class="font-heading font-bold text-slate-900 text-sm">Алмазное бурение</h4>
+                        <p class="text-xs text-slate-600 mt-1">Ровные ниши под подрозетники и встраиваемые щиты в монолитном бетоне и кирпиче.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center shrink-0 font-bold text-sm">03</div>
+                    <div>
+                        <h4 class="font-heading font-bold text-slate-900 text-sm">Опрессовка и сварка</h4>
+                        <p class="text-xs text-slate-600 mt-1">Никаких «голых скруток на изоленте» — только гильзы ГМЛ, сварка или клеммы WAGO по ПУЭ.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center shrink-0 font-bold text-sm">04</div>
+                    <div>
+                        <h4 class="font-heading font-bold text-slate-900 text-sm">Измерительные приборы</h4>
+                        <p class="text-xs text-slate-600 mt-1">Мультиметры, токовые клещи, тестеры УЗО и заземления для проверки каждой линии.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ЭКСПРЕСС-КАЛЬКУЛЯТОР «ПОД КЛЮЧ» + ПРАЙС-ЛИСТ ==================== -->
+    <section id="calculator" class="py-16 sm:py-24 bg-slate-100 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-amber-600 font-bold text-sm uppercase tracking-wider">Прозрачное ценообразование</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 mt-2 mb-3">Калькулятор «Под ключ» и детальный прайс</h2>
+                <p class="text-slate-600 text-base">Рассчитайте ориентировочный бюджет всей квартиры/дома за 10 секунд или наберите точный список отдельных работ в прайс-листе.</p>
+            </div>
+
+            <!-- БЛОК 1: ЭКСПРЕСС-КАЛЬКУЛЯТОР ПАКЕТНОГО РАСЧЕТА «ПОД КЛЮЧ» -->
+            <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl border border-slate-800 mb-14">
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-800">
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">Быстрый расчет бюджета</span>
+                        <h3 class="font-heading font-extrabold text-xl sm:text-2xl">Пакетный калькулятор «Электрика под ключ»</h3>
+                    </div>
+                    <span class="text-xs text-slate-400">Включает разметку, штробление, прокладку кабеля и сборку щита</span>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- Выбор типа объекта -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">1. Выберите тип объекта:</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="turnkey-object-buttons">
+                                <button type="button" data-obj="1room" class="tk-obj-btn tab-active px-3.5 py-3 rounded-xl border border-slate-700 bg-slate-850 text-left transition">
+                                    <span class="font-heading font-bold text-sm block">1-комн. квартира</span>
+                                    <span class="text-[11px] opacity-75">~ 35–42 м² • 25–30 точек</span>
+                                </button>
+                                <button type="button" data-obj="2room" class="tk-obj-btn px-3.5 py-3 rounded-xl border border-slate-700 bg-slate-850 text-slate-200 hover:border-amber-400 text-left transition">
+                                    <span class="font-heading font-bold text-sm block">2-комн. квартира</span>
+                                    <span class="text-[11px] opacity-75">~ 50–62 м² • 35–45 точек</span>
+                                </button>
+                                <button type="button" data-obj="3room" class="tk-obj-btn px-3.5 py-3 rounded-xl border border-slate-700 bg-slate-850 text-slate-200 hover:border-amber-400 text-left transition">
+                                    <span class="font-heading font-bold text-sm block">3-комн. квартира</span>
+                                    <span class="text-[11px] opacity-75">~ 70–85 м² • 50–65 точек</span>
+                                </button>
+                                <button type="button" data-obj="house" class="tk-obj-btn px-3.5 py-3 rounded-xl border border-slate-700 bg-slate-850 text-slate-200 hover:border-amber-400 text-left transition">
+                                    <span class="font-heading font-bold text-sm block">Частный дом / Коттедж</span>
+                                    <span class="text-[11px] opacity-75">~ 100–130 м² • 380 В</span>
+                                </button>
+                                <button type="button" data-obj="garage" class="tk-obj-btn px-3.5 py-3 rounded-xl border border-slate-700 bg-slate-850 text-slate-200 hover:border-amber-400 text-left transition">
+                                    <span class="font-heading font-bold text-sm block">Гараж / Баня / Хозблок</span>
+                                    <span class="text-[11px] opacity-75">Щиток, свет, силовые</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Выбор материала стен -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">2. Основной материал стен:</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="turnkey-wall-buttons">
+                                <button type="button" data-wall="gasblock" class="tk-wall-btn tab-active px-3 py-2.5 rounded-xl border border-slate-700 bg-slate-850 text-center text-xs sm:text-sm font-semibold transition">
+                                    Газоблок / Пеноблок
+                                </button>
+                                <button type="button" data-wall="brick" class="tk-wall-btn px-3 py-2.5 rounded-xl border border-slate-700 bg-slate-850 text-slate-200 hover:border-amber-400 text-center text-xs sm:text-sm font-semibold transition">
+                                    Кирпич / Керамзитоблок
+                                </button>
+                                <button type="button" data-wall="concrete" class="tk-wall-btn px-3 py-2.5 rounded-xl border border-slate-700 bg-slate-850 text-slate-200 hover:border-amber-400 text-center text-xs sm:text-sm font-semibold transition">
+                                    Бетон / Панель
+                                </button>
+                                <button type="button" data-wall="wood" class="tk-wall-btn px-3 py-2.5 rounded-xl border border-slate-700 bg-slate-850 text-slate-200 hover:border-amber-400 text-center text-xs sm:text-sm font-semibold transition">
+                                    Дерево / Каркас
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Карточка результата экспресс-расчета -->
+                    <div class="lg:col-span-5 bg-slate-850 border border-slate-700 rounded-2xl p-6 space-y-4">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span>Ориентировочная стоимость работ:</span>
+                            <span id="tk-duration" class="text-emerald-400 font-semibold">Срок: 2–3 дня</span>
+                        </div>
+                        <div>
+                            <div id="tk-price-range" class="font-heading font-extrabold text-3xl sm:text-4xl text-amber-400">28 000 – 34 000 ₽</div>
+                            <p id="tk-summary-desc" class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                                1-комн. квартира • Стены: газоблок. Включает разводку кабеля ВВГнг-LS, подрозетники и сборку квартирного щита.
+                            </p>
+                        </div>
+                        <button type="button" id="send-turnkey-btn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-3.5 rounded-xl transition shadow-lg shadow-amber-500/20 text-sm">
+                            Зафиксировать расчет и вызвать на замер
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- БЛОК 2: ДЕТАЛЬНЫЙ ИНТЕРАКТИВНЫЙ ПРАЙС-ЛИСТ -->
+            <div>
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <h3 class="font-heading font-extrabold text-2xl text-slate-900">Детальный прайс-лист по позициям</h3>
+                    <span class="text-xs sm:text-sm text-slate-500">Нажимайте «+», чтобы собрать точную смету</span>
+                </div>
+
+                <!-- Вкладки категорий прайса -->
+                <div class="flex flex-wrap gap-2 sm:gap-3 mb-6" id="price-tabs">
+                    <button data-category="rough" class="price-tab tab-active px-4 sm:px-5 py-3 rounded-xl text-xs sm:text-sm font-bold border border-slate-300 bg-white text-slate-700 hover:border-slate-900 transition">
+                        Черновой монтаж и кабель
+                    </button>
+                    <button data-category="panels" class="price-tab px-4 sm:px-5 py-3 rounded-xl text-xs sm:text-sm font-bold border border-slate-300 bg-white text-slate-700 hover:border-slate-900 transition">
+                        Щиты и автоматика
+                    </button>
+                    <button data-category="finish" class="price-tab px-4 sm:px-5 py-3 rounded-xl text-xs sm:text-sm font-bold border border-slate-300 bg-white text-slate-700 hover:border-slate-900 transition">
+                        Чистовая электрика и свет
+                    </button>
+                    <button data-category="house" class="price-tab px-4 sm:px-5 py-3 rounded-xl text-xs sm:text-sm font-bold border border-slate-300 bg-white text-slate-700 hover:border-slate-900 transition">
+                        Частный дом и участок
+                    </button>
+                </div>
+
+                <!-- Таблица прайса -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+                                    <th class="py-4 px-4 sm:px-6 font-semibold">Наименование электромонтажных работ</th>
+                                    <th class="py-4 px-3 font-semibold text-center w-20">Ед.</th>
+                                    <th class="py-4 px-3 font-semibold text-right w-28">Цена</th>
+                                    <th class="py-4 px-4 sm:px-6 font-semibold text-center w-36">Кол-во</th>
+                                    <th class="py-4 px-4 sm:px-6 font-semibold text-right w-32 hidden md:table-cell">Сумма</th>
+                                </tr>
+                            </thead>
+                            <tbody id="price-table-body" class="divide-y divide-slate-200 text-sm sm:text-base">
+                                <!-- Строки рендерятся через JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Итоговая панель сметы -->
+                <div class="mt-6 bg-slate-900 text-white rounded-2xl p-6 sm:p-7 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6 border border-slate-800">
+                    <div class="flex flex-col sm:flex-row items-center gap-5 sm:gap-8 text-center sm:text-left">
+                        <div>
+                            <span class="text-slate-400 text-xs uppercase tracking-wider block">Позиций в смете</span>
+                            <span id="calc-items-count" class="font-heading font-extrabold text-2xl text-white">0 поз.</span>
+                        </div>
+                        <div class="hidden sm:block w-px h-10 bg-slate-700"></div>
+                        <div>
+                            <span class="text-slate-400 text-xs uppercase tracking-wider block">Итого по выбранным работам</span>
+                            <div class="flex items-baseline justify-center sm:justify-start gap-2">
+                                <span id="calc-total-price" class="font-heading font-extrabold text-3xl sm:text-4xl text-amber-400">0 ₽</span>
+                                <span class="text-xs text-slate-400">(без учета материалов)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
+                        <button id="reset-calc-btn" class="w-full sm:w-auto px-5 py-3.5 rounded-xl border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 text-sm font-semibold transition">
+                            Очистить смету
+                        </button>
+                        <button id="send-estimate-btn" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-7 py-3.5 rounded-xl transition shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 text-sm sm:text-base">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                            Отправить смету на расчет
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ЧАСТНЫЕ ДОМА И УЧАСТКИ (П. ПОКРОВКА И ОБЛАСТЬ) ==================== -->
+    <section id="private-house" class="py-16 sm:py-24 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-12">
+                <span class="text-amber-600 font-bold text-xs sm:text-sm uppercase tracking-wider">Специализация для коттеджей и ИЖС</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 mt-2 mb-3">Электрика в частных домах и на участках (п. Покровка и область)</h2>
+                <p class="text-slate-600 text-base">Выполняем полный комплекс наружных и внутренних электромонтажных работ для домов из газоблока, кирпича, бруса и каркасных коттеджей.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
+                <!-- Карточка 1 -->
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-amber-400 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-lg bg-slate-900 text-amber-400 font-heading font-bold text-xs">15 кВт • 380 В</span>
+                            <span class="font-heading font-extrabold text-slate-900 text-base">от 7 500 ₽</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-slate-900 mb-2.5">Сборка и монтаж вводного щита учета на трубостойке</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-5">
+                            Изготовление и бетонирование металлической трубостойки на границе участка, сборка уличного герметичного щита IP65, установка вводного автомата, селективного УЗО и повторного заземления. Выполнение техусловий сетевой организации.
+                        </p>
+                    </div>
+                    <button onclick="openOrderModal('Заказ: Щит учета 15 кВт на трубостойке')" class="text-sm font-bold text-amber-600 hover:text-amber-700 inline-flex items-center gap-1.5">
+                        Заказать монтаж трубостойки <span>&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-amber-400 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-lg bg-slate-900 text-amber-400 font-heading font-bold text-xs">Безопасность дома</span>
+                            <span class="font-heading font-extrabold text-slate-900 text-base">от 8 500 ₽</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-slate-900 mb-2.5">Монтаж контура заземления с замером сопротивления</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-5">
+                            Установка глубинного модульно-штыревого (омедненного/нержавеющего) или классического сварного треугольного контура заземления, вывод стальной полосой на цоколь дома и контрольный замер сопротивления растеканию тока.
+                        </p>
+                    </div>
+                    <button onclick="openOrderModal('Заказ: Монтаж контура заземления')" class="text-sm font-bold text-amber-600 hover:text-amber-700 inline-flex items-center gap-1.5">
+                        Заказать заземление <span>&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-amber-400 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-lg bg-slate-900 text-amber-400 font-heading font-bold text-xs">Подземный ввод / СИП</span>
+                            <span class="font-heading font-extrabold text-slate-900 text-base">от 450 ₽ / м.п.</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-slate-900 mb-2.5">Прокладка вводного бронированного кабеля под землей</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-5">
+                            Подземный ввод кабелем ВБШв / АВБШв в защитной ПНД-трубе с укладкой сигнальной ленты от столба к дому, бане, гаражу или скважине. Также выполняем воздушный ввод проводом СИП с соблюдением нормативов провиса.
+                        </p>
+                    </div>
+                    <button onclick="openOrderModal('Заказ: Ввод кабеля в дом / на участок')" class="text-sm font-bold text-amber-600 hover:text-amber-700 inline-flex items-center gap-1.5">
+                        Рассчитать ввод кабеля <span>&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Карточка 4 -->
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-amber-400 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-lg bg-slate-900 text-amber-400 font-heading font-bold text-xs">Резервное питание</span>
+                            <span class="font-heading font-extrabold text-slate-900 text-base">от 4 500 ₽</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-slate-900 mb-2.5">Подключение генератора через рубильник или блок АВР</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-5">
+                            Организация резервного электроснабжения дома при отключении городской сети: монтаж трехпозиционного перекидного рубильника (ABB, Hager, IEK) или автоматического ввода резерва (АВР) с силовой розеткой на фасад.
+                        </p>
+                    </div>
+                    <button onclick="openOrderModal('Заказ: Подключение генератора / АВР')" class="text-sm font-bold text-amber-600 hover:text-amber-700 inline-flex items-center gap-1.5">
+                        Заказать подключение генератора <span>&rarr;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ПОРТФОЛИО РАБОТ С ПЕРЕКЛЮЧАТЕЛЕМ «ДО / ПОСЛЕ» ==================== -->
+    <section id="portfolio" class="py-16 sm:py-24 bg-slate-100 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+                <div>
+                    <span class="text-amber-600 font-bold text-xs sm:text-sm uppercase tracking-wider">Примеры наших объектов</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 mt-1.5">Портфолио работ «До / После»</h2>
+                </div>
+                <!-- Фильтры портфолио -->
+                <div class="flex flex-wrap gap-2" id="portfolio-filters">
+                    <button data-filter="all" class="pf-filter-btn tab-active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-300 bg-white text-slate-700 transition">Все объекты</button>
+                    <button data-filter="house" class="pf-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-300 bg-white text-slate-700 hover:border-slate-900 transition">Частные дома</button>
+                    <button data-filter="flat" class="pf-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-300 bg-white text-slate-700 hover:border-slate-900 transition">Квартиры</button>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-7" id="portfolio-grid">
+                <!-- Кейс 1 -->
+                <article data-category="house" class="pf-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="relative bg-slate-900 text-white p-5 h-56 flex flex-col justify-between overflow-hidden">
+                            <div class="flex items-center justify-between z-10">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-amber-400 text-[11px] font-bold">п. Покровка • Дом 125 м²</span>
+                                <div class="inline-flex rounded-lg bg-slate-950 p-0.5 border border-slate-700">
+                                    <button type="button" onclick="toggleBeforeAfter(this, 'before')" class="ba-btn px-2.5 py-1 rounded-md text-[11px] font-bold text-slate-400 hover:text-white transition">ДО</button>
+                                    <button type="button" onclick="toggleBeforeAfter(this, 'after')" class="ba-btn bg-amber-500 text-slate-950 px-2.5 py-1 rounded-md text-[11px] font-bold transition">ПОСЛЕ</button>
+                                </div>
+                            </div>
+
+                            <div class="ba-view-after z-10 space-y-2">
+                                <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                    Собран 3-фазный щит на 36 модулей
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    Установлены 3 реле напряжения с контролем тока, 4 УЗО на влажные и розеточные группы, перекидной рубильник под генератор и полная маркировка линий.
+                                </p>
+                            </div>
+
+                            <div class="ba-view-before hidden z-10 space-y-2">
+                                <div class="flex items-center gap-2 text-red-400 text-xs font-bold">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.732-3L13.732 4a2 2 0 00-3.464 0L3.268 16A2 2 0 005 19z"/></svg>
+                                    Исходное состояние от застройщика
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    Вводной кабель заведен через окно, один общий автомат на весь дом без УЗО и защиты от скачков напряжения, пучок неподписанных проводов из стены.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Сборка щита 380 В и разводка дома в п. Покровка</h3>
+                            <ul class="text-xs text-slate-600 space-y-1.5 mb-4">
+                                <li>• Прокладка 420 м кабеля ВВГнг-LS (ГОСТ) в гофре</li>
+                                <li>• Монтаж 58 розеточных и световых точек</li>
+                                <li>• Сборка щита + подключение генератора и контура заземления</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs">
+                        <div>
+                            <span class="text-slate-400 block">Срок работ</span>
+                            <span class="font-bold text-slate-900">4 рабочих дня</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-slate-400 block">Бюджет работ</span>
+                            <span class="font-heading font-extrabold text-base text-amber-600">54 000 ₽</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Кейс 2 -->
+                <article data-category="flat" class="pf-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="relative bg-slate-900 text-white p-5 h-56 flex flex-col justify-between overflow-hidden">
+                            <div class="flex items-center justify-between z-10">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-amber-400 text-[11px] font-bold">г. Оренбург • Новостройка 64 м²</span>
+                                <div class="inline-flex rounded-lg bg-slate-950 p-0.5 border border-slate-700">
+                                    <button type="button" onclick="toggleBeforeAfter(this, 'before')" class="ba-btn px-2.5 py-1 rounded-md text-[11px] font-bold text-slate-400 hover:text-white transition">ДО</button>
+                                    <button type="button" onclick="toggleBeforeAfter(this, 'after')" class="ba-btn bg-amber-500 text-slate-950 px-2.5 py-1 rounded-md text-[11px] font-bold transition">ПОСЛЕ</button>
+                                </div>
+                            </div>
+
+                            <div class="ba-view-after z-10 space-y-2">
+                                <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                    Разводка по потолку и щит на 24 модуля
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    Трассы уложены параллельными пучками на клипсах по потолку, выведены отдельные линии на духовой шкаф, варочную панель, посудомойку, бойлер и 2 сплит-системы.
+                                </p>
+                            </div>
+
+                            <div class="ba-view-before hidden z-10 space-y-2">
+                                <div class="flex items-center gap-2 text-red-400 text-xs font-bold">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.732-3L13.732 4a2 2 0 00-3.464 0L3.268 16A2 2 0 005 19z"/></svg>
+                                    Черновая отделка без разводки
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    В квартиру заведен только вводной кабель от этажного щита. Требовалась разводка по дизайн-проекту заказчика под натяжные потолки и кухню на заказ.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Электрика «под ключ» в 2-комнатной новостройке</h3>
+                            <ul class="text-xs text-slate-600 space-y-1.5 mb-4">
+                                <li>• Алмазное сверление 46 подрозетников в монолите</li>
+                                <li>• Опрессовка всех распредкоробок медными гильзами ГМЛ</li>
+                                <li>• Проходные выключатели в спальне и коридоре</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs">
+                        <div>
+                            <span class="text-slate-400 block">Срок работ</span>
+                            <span class="font-bold text-slate-900">3 рабочих дня</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-slate-400 block">Бюджет работ</span>
+                            <span class="font-heading font-extrabold text-base text-amber-600">41 500 ₽</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Кейс 3 -->
+                <article data-category="flat" class="pf-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="relative bg-slate-900 text-white p-5 h-56 flex flex-col justify-between overflow-hidden">
+                            <div class="flex items-center justify-between z-10">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-amber-400 text-[11px] font-bold">г. Оренбург • Вторичка 48 м²</span>
+                                <div class="inline-flex rounded-lg bg-slate-950 p-0.5 border border-slate-700">
+                                    <button type="button" onclick="toggleBeforeAfter(this, 'before')" class="ba-btn px-2.5 py-1 rounded-md text-[11px] font-bold text-slate-400 hover:text-white transition">ДО</button>
+                                    <button type="button" onclick="toggleBeforeAfter(this, 'after')" class="ba-btn bg-amber-500 text-slate-950 px-2.5 py-1 rounded-md text-[11px] font-bold transition">ПОСЛЕ</button>
+                                </div>
+                            </div>
+
+                            <div class="ba-view-after z-10 space-y-2">
+                                <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                    Полная замена на медь + внутренний щит
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    Старый алюминий полностью отключен, заведен новый медный ввод ВВГнг 3×6 мм², в прихожей утоплен аккуратный щиток с реле защиты от обрыва нуля.
+                                </p>
+                            </div>
+
+                            <div class="ba-view-before hidden z-10 space-y-2">
+                                <div class="flex items-center gap-2 text-red-400 text-xs font-bold">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.732-3L13.732 4a2 2 0 00-3.464 0L3.268 16A2 2 0 005 19z"/></svg>
+                                    Изношенная алюминиевая проводка
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    Ломкие алюминиевые провода без заземления, оплавленные скрутки в коробках, при одновременном включении чайника и стиральной машины выбивало пробки.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Полная замена алюминиевой проводки в квартире</h3>
+                            <ul class="text-xs text-slate-600 space-y-1.5 mb-4">
+                                <li>• Штробление стен с пылесосом (минимальная запыленность)</li>
+                                <li>• Перенос розеток на евростандарт (30 см от пола)</li>
+                                <li>• Установка 34 розеток и выключателей после поклейки обоев</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs">
+                        <div>
+                            <span class="text-slate-400 block">Срок работ</span>
+                            <span class="font-bold text-slate-900">2,5 рабочих дня</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-slate-400 block">Бюджет работ</span>
+                            <span class="font-heading font-extrabold text-base text-amber-600">33 000 ₽</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== СТАНДАРТЫ МАТЕРИАЛОВ И ПОМОЩЬ В ЗАКУПКЕ ==================== -->
+    <section id="materials" class="py-16 sm:py-24 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-5 space-y-4">
+                    <span class="text-amber-600 font-bold text-xs sm:text-sm uppercase tracking-wider">Надежность на десятилетия</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 leading-tight">
+                        Стандарты материалов и закупка без переплат
+                    </h2>
+                    <p class="text-slate-600 text-base leading-relaxed">
+                        Даже самый аккуратный монтаж не спасет, если использовать дешевый «заниженный» кабель ТУ или несертифицированные автоматы. Мы принципиально работаем только с проверенными комплектующими.
+                    </p>
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 space-y-2">
+                        <div class="font-heading font-bold text-slate-900 text-base flex items-center gap-2">
+                            <svg class="w-5 h-5 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Закупка по оптовым скидкам с отчетом по чекам
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                            Можем полностью взять закупку и доставку материалов на себя в профессиональных электромаркетах Оренбурга с нашей монтажной скидкой. Передаем вам все оригинальные товарные чеки.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 grid sm:grid-cols-2 gap-5">
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                        <span class="text-xs font-extrabold text-amber-600 uppercase tracking-wider">Кабельная продукция</span>
+                        <h3 class="font-heading font-bold text-lg text-slate-900 mt-1 mb-2">Только ВВГнг-LS ГОСТ</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                            Используем негорючий медный кабель с пониженным дымо- и газовыделением честного сечения: 3×1,5 мм² на свет, 3×2,5 мм² на розетки, 3×6 мм² на варочную панель.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 text-[11px] font-bold text-slate-700">
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">Севкабель</span>
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">Конкорд</span>
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">Алюр</span>
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">Кабэкс</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                        <span class="text-xs font-extrabold text-amber-600 uppercase tracking-wider">Модульная автоматика</span>
+                        <h3 class="font-heading font-bold text-lg text-slate-900 mt-1 mb-2">Защита от КЗ и утечек</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                            Подбираем автоматические выключатели с характеристикой B/C, электромеханические УЗО типа A/AC и реле напряжения с защитой от отгорания нуля.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 text-[11px] font-bold text-slate-700">
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">ABB</span>
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">Schneider Electric</span>
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">IEK KARAT</span>
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">Dekraft</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                        <span class="text-xs font-extrabold text-amber-600 uppercase tracking-wider">Трассы и крепеж</span>
+                        <h3 class="font-heading font-bold text-lg text-slate-900 mt-1 mb-2">Негорючая гофра и ПНД</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                            Прокладка по потолку в самозатухающей ПВХ-гофре (DKC, Промрукав), для деревянных домов — металлическая труба/гофра, для улицы и земли — толстостенная ПНД.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 text-[11px] font-bold text-slate-700">
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">DKC</span>
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">Промрукав</span>
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">Рувинил</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                        <span class="text-xs font-extrabold text-amber-600 uppercase tracking-wider">Установочные коробки</span>
+                        <h3 class="font-heading font-bold text-lg text-slate-900 mt-1 mb-2">Глубокие подрозетники</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                            Ставим глубокие подрозетники (45–60 мм) с жесткой сцепкой в блок, чтобы механизмы розеток не расшатывались со временем и хватало места для расключения.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 text-[11px] font-bold text-slate-700">
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">Hegel</span>
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">Schneider</span>
+                            <span class="px-2.5 py-1 bg-white rounded-md border border-slate-200">Kopas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ОТЗЫВЫ КЛИЕНТОВ (БЕЗ ФЕЙКОВ + QR-КОД ДЛЯ ОТЗЫВА) ==================== -->
+    <section id="reviews" class="py-16 sm:py-24 bg-slate-100 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+                <div>
+                    <span class="text-amber-600 font-bold text-xs sm:text-sm uppercase tracking-wider">Честная репутация</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 mt-1.5">Отзывы наших клиентов</h2>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                    <div id="reviews-summary-badge" class="hidden items-center gap-2.5 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm">
+                        <svg class="w-5 h-5 text-amber-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <span id="reviews-count-text" class="font-bold text-slate-900 text-sm"></span>
+                    </div>
+                    <!-- Кнопка QR-кода для быстрого сбора отзывов на объекте -->
+                    <button type="button" onclick="openQrModal()" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-4 py-2.5 rounded-xl transition text-xs sm:text-sm shadow-sm">
+                        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+                        Показать QR-код для отзыва
+                    </button>
+                </div>
+            </div>
+
+            <!-- Заглушка, когда отзывов еще нет -->
+            <div id="reviews-empty-state" class="bg-white rounded-2xl p-8 sm:p-12 border border-dashed border-slate-300 text-center max-w-3xl mx-auto mb-12">
+                <div class="w-14 h-14 rounded-2xl bg-amber-500/15 text-amber-600 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                    </svg>
+                </div>
+                <p class="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-2">
+                    Отзывов пока нет — станьте первым клиентом, кто поделится впечатлением о нашей работе!
+                </p>
+                <p class="text-slate-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+                    Мы не пишем выдуманные отзывы сами. Если мы уже выполняли монтаж у вас в Оренбурге или п. Покровке — напишите пару строк ниже.
+                </p>
+            </div>
+
+            <!-- Сетка отзывов (отображается после добавления первого отзыва) -->
+            <div id="reviews-grid" class="hidden grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Карточки рендерятся через JS -->
+            </div>
+
+            <!-- Форма добавления отзыва -->
+            <div class="max-w-3xl mx-auto bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+                <h3 class="font-heading font-bold text-xl sm:text-2xl text-slate-900 mb-1.5">Написать отзыв о нашей работе</h3>
+                <p class="text-slate-500 text-sm mb-6">Отзыв сразу появится на странице и придет мастерам в Telegram.</p>
+
+                <form id="add-review-form" class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Ваше имя *</label>
+                            <input type="text" id="review-author" required placeholder="Например, Сергей" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white transition text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Район и объект *</label>
+                            <input type="text" id="review-object" required placeholder="Например, п. Покровка, частный дом / Оренбург, квартира" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white transition text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Оценка (1–5 звезд)</label>
+                        <div class="flex items-center gap-2" id="star-rating-picker">
+                            <button type="button" data-rating="1" class="star-btn text-amber-400 hover:scale-110 transition" aria-label="1 звезда">
+                                <svg class="w-7 h-7 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </button>
+                            <button type="button" data-rating="2" class="star-btn text-amber-400 hover:scale-110 transition" aria-label="2 звезды">
+                                <svg class="w-7 h-7 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </button>
+                            <button type="button" data-rating="3" class="star-btn text-amber-400 hover:scale-110 transition" aria-label="3 звезды">
+                                <svg class="w-7 h-7 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </button>
+                            <button type="button" data-rating="4" class="star-btn text-amber-400 hover:scale-110 transition" aria-label="4 звезды">
+                                <svg class="w-7 h-7 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </button>
+                            <button type="button" data-rating="5" class="star-btn text-amber-400 hover:scale-110 transition" aria-label="5 звезд">
+                                <svg class="w-7 h-7 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </button>
+                        </div>
+                        <input type="hidden" id="review-rating-value" value="5">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Ваш отзыв *</label>
+                        <textarea id="review-text" rows="3" required placeholder="Расскажите, какие работы выполняли Дмитрий и Сергей, как прошла сдача объекта..." class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white transition text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-6 py-3.5 rounded-xl transition text-sm shadow-md shadow-amber-500/15">
+                        Опубликовать отзыв
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ЧАСТЫЕ ВОПРОСЫ (FAQ) ==================== -->
+    <section id="faq" class="py-16 sm:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-amber-600 font-bold text-xs sm:text-sm uppercase tracking-wider">Ответы на главные вопросы</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 mt-1.5">Частые вопросы (FAQ)</h2>
+            </div>
+
+            <div class="space-y-4" id="faq-accordion">
+                <!-- Вопрос 1 -->
+                <div class="faq-item open bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
+                    <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-slate-900 text-base sm:text-lg hover:bg-slate-100/80 transition">
+                        <span>Какая гарантия дается на электромонтажные работы?</span>
+                        <svg class="faq-icon w-5 h-5 text-amber-600 shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-content px-6">
+                        <p class="pb-5 text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Мы предоставляем официальную гарантию <strong>5 лет</strong> на все выполненные скрытые и открытые электромонтажные работы, сборку распределительных щитов и соединения в распредкоробках.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Вопрос 2 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
+                    <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-slate-900 text-base sm:text-lg hover:bg-slate-100/80 transition">
+                        <span>Как проходит оплата — нужна ли предоплата?</span>
+                        <svg class="faq-icon w-5 h-5 text-amber-600 shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-content px-6">
+                        <p class="pb-5 text-slate-600 text-sm sm:text-base leading-relaxed">
+                            За саму работу предоплату не берем — оплата производится поэтапно по факту выполнения и приемки вами каждого этапа (например, после чернового этапа и после установки розеток/щита). Аванс требуется только на закупку материалов, если покупаем их мы по чекам.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Вопрос 3 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
+                    <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-slate-900 text-base sm:text-lg hover:bg-slate-100/80 transition">
+                        <span>Много ли пыли будет при штроблении в жилой квартире?</span>
+                        <svg class="faq-icon w-5 h-5 text-amber-600 shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-content px-6">
+                        <p class="pb-5 text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Мы используем профессиональный штроборез с кожухом, подключенный к строительному пылесосу. Это улавливает до 95% бетонной и кирпичной пыли прямо в процессе реза. После завершения работ весь крупный строительный мусор собираем в мешки.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Вопрос 4 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
+                    <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-slate-900 text-base sm:text-lg hover:bg-slate-100/80 transition">
+                        <span>Выезжаете ли вы в пригород Оренбурга и дачные массивы?</span>
+                        <svg class="faq-icon w-5 h-5 text-amber-600 shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-content px-6">
+                        <p class="pb-5 text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Да, выезжаем по всему г. Оренбургу, п. Покровке, а также в ближайшие поселки и СНТ. Выезд на замер и составление сметы при выполнении работ — бесплатно.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== КОНТАКТЫ И ПОДВАЛ (FOOTER) ==================== -->
+    <footer id="contacts" class="bg-slate-950 text-white pt-16 sm:pt-20 pb-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 pb-14 border-b border-slate-800">
+                <!-- Левая колонка: Контакты двух мастеров -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div>
+                        <span class="text-amber-400 font-bold text-xs sm:text-sm uppercase tracking-wider">Контакты без посредников</span>
+                        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl mt-1.5">Свяжитесь с нами напрямую</h2>
+                        <p class="text-slate-400 text-base mt-3 max-w-lg">
+                            Звоните по любому из двух номеров или пишите в Telegram / ВКонтакте. Проконсультируем, поможем рассчитать материалы и договоримся о выезде.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4">
+                        <div class="flex items-center justify-between gap-4 flex-wrap">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Чесноков Дмитрий Сергеевич</span>
+                                <a href="tel:+79015932642" class="font-heading font-extrabold text-xl sm:text-2xl text-white hover:text-amber-400 transition">+7 (901) 593-26-42</a>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-amber-400 text-xs font-bold">Монтаж • Заземление • Свет</span>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800 flex items-center justify-between gap-4 flex-wrap">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Чесноков Сергей Викторович</span>
+                                <a href="tel:+79017100137" class="font-heading font-extrabold text-xl sm:text-2xl text-white hover:text-amber-400 transition">+7 (901) 710-01-37</a>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-amber-400 text-xs font-bold">Щиты • Проекты • 380 В</span>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4">
+                            <span class="text-xs text-slate-400 block mb-1">Район работы</span>
+                            <span class="font-semibold text-white">г. Оренбург, п. Покровка и пригород</span>
+                        </div>
+                        <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4">
+                            <span class="text-xs text-slate-400 block mb-1">График работы</span>
+                            <span class="font-semibold text-white">08:00 – 21:00 без выходных (Аварийный 24/7)</span>
+                        </div>
+                    </div>
+
+                    <!-- Кнопки Telegram и ВКонтакте (только Telegram и ВКонтакте) -->
+                    <div class="flex flex-wrap gap-3 pt-1">
+                        <a data-tg-link href="https://t.me/+79015932642" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 bg-[#229ED9] hover:bg-[#1e8cc0] text-white font-bold px-5 py-3.5 rounded-xl transition text-sm">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                            Написать в Telegram
+                        </a>
+                        <a data-vk-link href="https://vk.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 bg-[#0077FF] hover:bg-[#0066dd] text-white font-bold px-5 py-3.5 rounded-xl transition text-sm">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.08 14.27h-1.46c-.55 0-.72-.44-1.71-1.44-.86-.83-1.24-.94-1.45-.94-.3 0-.38.08-.38.49v1.31c0 .35-.11.56-1.04.56-1.54 0-3.25-.93-4.45-2.67-1.81-2.54-2.3-4.45-2.3-4.84 0-.21.08-.41.49-.41h1.46c.37 0 .51.17.65.56.71 2.06 1.91 3.86 2.4 3.86.18 0 .27-.08.27-.55v-2.14c-.06-.99-.58-1.08-.58-1.43 0-.17.14-.34.37-.34h2.29c.31 0 .42.17.42.53v2.89c0 .31.14.42.23.42.18 0 .34-.11.68-.45 1.05-1.18 1.8-2.99 1.8-2.99.1-.21.27-.41.64-.41h1.46c.44 0 .53.22.44.53-.18.84-1.95 3.33-1.95 3.33-.15.25-.21.36 0 .64.15.21.66.65 1 1.04.62.71 1.1 1.3 1.23 1.71.13.41-.08.62-.49.62z"/></svg>
+                            Группа ВКонтакте
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Правая колонка: Форма обратной связи с загрузкой фото -->
+                <div class="lg:col-span-6">
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl">
+                        <h3 class="font-heading font-bold text-xl sm:text-2xl text-white mb-1.5">Оставить заявку на выезд или расчет</h3>
+                        <p class="text-slate-400 text-sm mb-6">Заполните форму — заявка мгновенно отправится мастерам в Telegram.</p>
+
+                        <form id="footer-contact-form" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1.5">Ваше имя *</label>
+                                    <input type="text" name="name" required placeholder="Иван" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1.5">Телефон *</label>
+                                    <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition text-sm">
+                                </div>
+                            </div>
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1.5">Район выезда</label>
+                                    <select name="district" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:border-amber-500 transition text-sm">
+                                        <option value="г. Оренбург">г. Оренбург</option>
+                                        <option value="п. Покровка">п. Покровка</option>
+                                        <option value="Пригород">Пригород Оренбурга</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1.5">Фото щитка или плана</label>
+                                    <label class="flex items-center justify-between gap-2 px-3.5 py-3 rounded-xl bg-slate-950 border border-dashed border-slate-700 hover:border-amber-500 cursor-pointer transition text-xs text-slate-400">
+                                        <span class="file-label truncate">Прикрепить фото...</span>
+                                        <span class="text-amber-400 font-bold shrink-0">+ Файл</span>
+                                        <input type="file" name="photo" accept="image/*" class="hidden photo-input">
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5">Описание задачи</label>
+                                <textarea name="task" rows="3" placeholder="Например: нужно собрать щит 380 В в доме в п. Покровка или развести электрику в квартире 54 м²..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition text-sm"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-3.5 rounded-xl transition shadow-lg shadow-amber-500/20 text-sm sm:text-base">
+                                Отправить заявку мастерам
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Нижняя строка подвала + кнопка «Настройка для мастера» -->
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center md:text-left">
+                <div>
+                    <span class="font-heading font-bold text-slate-200 text-sm block sm:inline">Электромонтажные работы — Чесноков Д.С. и Чесноков С.В.</span>
+                    <span class="hidden sm:inline mx-2">•</span>
+                    <span>г. Оренбург и п. Покровка © 2026</span>
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a href="tel:+79015932642" class="text-slate-300 hover:text-amber-400 font-medium">+7 (901) 593-26-42</a>
+                    <span>•</span>
+                    <a href="tel:+79017100137" class="text-slate-300 hover:text-amber-400 font-medium">+7 (901) 710-01-37</a>
+                    <span>•</span>
+                    <button type="button" onclick="openSetupModal()" class="text-slate-500 hover:text-amber-400 underline transition">
+                        Настройка для мастера
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== МОДАЛЬНОЕ ОКНО ЗАЯВКИ / СМЕТЫ / ФОТО ==================== -->
+    <div id="order-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+        <div class="bg-white text-slate-900 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+            <button onclick="closeOrderModal()" class="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition" aria-label="Закрыть">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoi
